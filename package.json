@@ -1,7 +1,7 @@
 {
   "name": "course-signup-template",
   "version": "1.0.0",
-  "description": "",
+  "description": "an api for booking classes",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -24,6 +24,8 @@ app.use(express.json()); // app is ready to analyze data within incoming request
 app.use(layouts);
 app.use(express.static("public"));
 
+//conecting to databa
+
 
 app.get("/", (req, res) => {
   res.render("index");
