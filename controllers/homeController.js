@@ -1,4 +1,4 @@
-"use strict";
+ "use strict";
 "use strict";
 
 var courses = [ // an array of courses 
@@ -17,9 +17,12 @@ var courses = [ // an array of courses
 ]; // course array 
 
 exports.showCourses = (req, res) => { // pass the course array to the view 
-  res.render("courses", {
+  res.render("courses",   {
     offeredCourses: courses
+  
+
   });
+  
 };
 
 exports.showSignUp = (req, res) => { // call backfunction 
