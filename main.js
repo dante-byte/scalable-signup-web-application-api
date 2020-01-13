@@ -1,16 +1,23 @@
 "use strict";
 
-const 
+const express = require("express"),
+app = express(), //instantiate the express application 
+homeController = require("./controllers/homeController"),
+errorController = require("./controllers/errorController"),
 
-  
-    express = require("express"),
-    app = express(), //instantiate the express application 
-    homeController = require("./controllers/homeController"),
-    errorController = require("./controllers/errorController"),
-    layouts = require("express-ejs-layouts"); // require the express ejs-layouts module 
+//mongo db connectoin
+mongoose = require('mongoose'),
+db = mongoose.connection,
+Subscriber = require('./models/subscribers');;
+mongoose.connect('mongodb://localhost:27017/recipe_dbtwo', 
+{
+  useNewUrlParser: true
+})
 
+
+const layouts = require("express-ejs-layouts"); // require the express ejs-layouts module 
 app.set("view engine", "ejs"); //sets the application to use ejs 
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 8080);
 app.use(express.urlencoded({
     extended: false /* tells the express.js app to use body-parser
                     for processing url encoded and json parameters 
@@ -46,15 +53,19 @@ app.get("/test", homeController.showTest);
 
 
 
+
+
+
 app.use(errorController.pageNotFoundError); // place after app.get functions 
 app.use(errorController.internalServerError);
 
-http://localhost:3000/contact
 
 
 
 
-
+db.once('open', () => {
+  console.log(`database connected on port 27017`);
+})
 app.listen(app.get("port"), () => {
   console.log(`Server running at http://localhost:${app.get("port")}`);
 });
